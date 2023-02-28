@@ -139,3 +139,8 @@ img {
 .block {
   display: block;
 }
+
+.mini-img {
+  width: 20px;
+  margin-right: 30px;
+}

@@ -16,19 +16,24 @@ const app = Vue.createApp({
     attackMonster() {
       const attactValue = getRandomValue(5, 12);
       this.monsterHealth -= attactValue;
-      this.addLogMessage("Player", "attack", attactValue);
+      this.addLogMessage("Player", "attack", attactValue, "img/player.png");
       this.attackPlayer();
       this.currentRound++;
     },
     attackPlayer() {
       const attactValue = getRandomValue(8, 15);
       this.playerHealth -= attactValue;
-      this.addLogMessage("Monster", "attack", attactValue);
+      this.addLogMessage("Monster", "attack", attactValue, "img/monster.png");
     },
     specialAttactMonster() {
       const attactValue = getRandomValue(10, 25);
       this.monsterHealth -= attactValue;
-      this.addLogMessage("Player", "special-attack", attactValue);
+      this.addLogMessage(
+        "Player",
+        "special-attack",
+        attactValue,
+        "img/player.png"
+      );
       this.attackPlayer();
       this.currentRound++;
     },
@@ -42,7 +47,7 @@ const app = Vue.createApp({
       } else {
         this.playerHealth += healValue;
       }
-      this.addLogMessage("Player", "heal", healValue);
+      this.addLogMessage("Player", "heal", healValue, "img/player.png");
       this.attackPlayer();
       this.currentRound++;
     },
@@ -64,11 +69,12 @@ const app = Vue.createApp({
       );
     },
 
-    addLogMessage(who, what, value) {
+    addLogMessage(who, what, value, img) {
       this.logMessages.unshift({
         actionBy: who,
         actionType: what,
         actionValue: value,
+        actionImg: img,
       });
     },
   },

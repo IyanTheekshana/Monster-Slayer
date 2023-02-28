@@ -24,7 +24,7 @@
       <section id="monster" class="container">
         <!-- <h2>Monster Health</h2> -->
         <img src="img/monster.png" alt="" />
-        <div class="healthbar">
+        <div class="healthbar" monster>
           <div class="healthbar__value" :style="monsterBarStyle"></div>
         </div>
       </section>
@@ -43,7 +43,9 @@
         >
           SPECIAL ATTACK
         </button>
-        <button @click="healPlayer()">HEAL</button>
+        <button @click="healPlayer()" v-bind:disabled="maySurrender() ">
+          HEAL
+        </button>
         <button @click="surrender()" v-bind:disabled="maySurrender() ">
           SURRENDER
         </button>
@@ -55,6 +57,7 @@
             v-for="action in logMessages"
             v-bind:class="{'log--player': action.actionBy === 'Player', 'log--monster': action.actionBy === 'Monster'}"
           >
+            <img v-bind:src="action.actionImg" alt="" class="mini-img" />
             {{action.actionBy}} - {{action.actionType}} - {{action.actionValue}}
           </li>
         </ul>
