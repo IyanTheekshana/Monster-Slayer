@@ -17,7 +17,7 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
-      <section v-if="winner" class="container message">
+      <section v-if="winner" class="container message block">
         <h2>GAME OVER - {{winner}}</h2>
         <button @click="startGame()">Start new game</button>
       </section>
@@ -48,9 +48,16 @@
           SURRENDER
         </button>
       </section>
-      <section id="log" class="container">
+      <section id="log" class="container block">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li
+            v-for="action in logMessages"
+            v-bind:class="{'log--player': action.actionBy === 'Player', 'log--monster': action.actionBy === 'Monster'}"
+          >
+            {{action.actionBy}} - {{action.actionType}} - {{action.actionValue}}
+          </li>
+        </ul>
       </section>
     </div>
     <a

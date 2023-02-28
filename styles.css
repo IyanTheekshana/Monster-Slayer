@@ -131,9 +131,11 @@ button:disabled {
 .message {
   background-color: #08b6f5;
   color: #fff;
-  display: block;
 }
 
 img {
   width: 100px;
+}
+.block {
+  display: block;
 }
