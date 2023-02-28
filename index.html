@@ -17,28 +17,53 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
+      <section v-if="winner" class="container message">
+        <h2>GAME OVER - {{winner}}</h2>
+        <button @click="startGame()">Start new game</button>
+      </section>
       <section id="monster" class="container">
-        <h2>Monster Health</h2>
+        <!-- <h2>Monster Health</h2> -->
+        <img src="img/monster.png" alt="" />
         <div class="healthbar">
           <div class="healthbar__value" :style="monsterBarStyle"></div>
         </div>
       </section>
       <section id="player" class="container">
-        <h2>Your Health</h2>
+        <!-- <h2>Your Health</h2> -->
+        <img src="img/player.png" alt="" />
         <div class="healthbar">
           <div class="healthbar__value" :style="playerBarStyle"></div>
         </div>
       </section>
-      <section id="controls">
+      <section id="controls" v-if="!winner">
         <button @click="attackMonster()">ATTACK</button>
-        <button>SPECIAL ATTACK</button>
-        <button>HEAL</button>
-        <button>SURRENDER</button>
+        <button
+          v-bind:disabled="mayUserSpeacialAttcak()"
+          @click="specialAttactMonster()"
+        >
+          SPECIAL ATTACK
+        </button>
+        <button @click="healPlayer()">HEAL</button>
+        <button @click="surrender()" v-bind:disabled="maySurrender() ">
+          SURRENDER
+        </button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
         <ul></ul>
       </section>
     </div>
+    <a
+      style="display: none"
+      href="https://www.flaticon.com/free-icons/monster"
+      title="monster icons"
+      >Monster icons created by Smashicons - Flaticon</a
+    >
+    <a
+      style="display: none"
+      href="https://www.flaticon.com/free-icons/person"
+      title="person icons"
+      >Person icons created by Freepik - Flaticon</a
+    >
   </body>
 </html>
